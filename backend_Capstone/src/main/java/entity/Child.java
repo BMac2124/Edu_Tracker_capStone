@@ -16,13 +16,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name = "child")
+@Entity 
+@Table(name = "child")//table name-table details
 public class Child {
 	
-	@Id
+	@Id//define primary key. 
+	//@GeneratedValue is define primary key generation
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id; 
+	//@column is defining names of columns for table fields
 	@Column(name = "name")
 	private String name; 
 	@Column(name = "grade")
@@ -34,11 +36,16 @@ public class Child {
 	@Column(name = "tutoring")
 	private String tutoring;
 	
+	//Many to Many relationship being defined.JPA annotation is used to link the source entity with the target entity. 
+	//FetchType.LAZY is saying fetch (entities) when relationship used. 
+	//CascadeType.ALL is updating and deleting entities. 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	//Joining table JPA annotation for joining table with third table.
 	@JoinTable(name = "child_parent",
 		joinColumns = {@JoinColumn(name = "child_id")},
 		inverseJoinColumns = {@JoinColumn (name = "parent_id")})
-	
+	// directional many to many mapping
 	private Set<Parent> parents = new HashSet<>();
 	
 	public Child() {
