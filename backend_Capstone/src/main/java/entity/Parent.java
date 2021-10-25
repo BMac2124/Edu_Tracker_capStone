@@ -24,13 +24,13 @@ public class Parent {
 	private String role; 
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "parents")
-	private Set<Child> children = new HashSet<>();
+	private Set<child> children = new HashSet<>();
 	
 	public Parent() {
 		
 	}
 	
-	public Parent(String name, String role, Set<Child> children) {
+	public Parent(String name, String role, Set<child> children) {
 		super();
 		this.name = name;
 		this.role = role;
@@ -55,10 +55,10 @@ public class Parent {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public Set<Child> getChildren() {
+	public Set<child> getChildren() {
 		return children;
 	}
-	public void setChildren(Set<Child> children) {
+	public void setChildren(Set<child> children) {
 		this.children = children;
 	}
 	
